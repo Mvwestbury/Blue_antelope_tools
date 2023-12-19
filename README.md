@@ -4,9 +4,7 @@
 ## Heterozygosity
 ### Base calls using ANGSD
 angsd -minq 20 -minmapq 20 -uniqueOnly 1 -remove_bads 1 -docounts 1 -dumpCounts 4 -i $line.bam -out NRM590107 -setMinDepthInd 10 -rf Autosomes.txt -nthreads 10
-
 gunzip NRM590107.pos.gz
-
 zcat NRM590107.counts.gz | tail -n +2 | sh Basecalls_0.05.sh - | cat header.txt - | paste Mega_MG3_merge.pos - > NRM590107.basecall.txt
 
 ### Print the minor allele frequency by het type (for plotting)
