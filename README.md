@@ -5,16 +5,22 @@
 ### Base calls using ANGSD
 
  - Perform the base calling in ANGSD specifying dumpcounts to print the counts and your filtering parameters of choice
+   
 `angsd -minq 20 -minmapq 20 -uniqueOnly 1 -remove_bads 1 -docounts 1 -dumpCounts 4 -i NRM590107.bam -out NRM590107 -setMinDepthInd 10 -rf Autosomes.txt -nthreads 10`
  - Unzip the output that countains all the site information
+   
 `gunzip NRM590107.pos.gz`
- - Open the base counts | remove the header | perform the base calling with our script | add the header | Paste together the base counts and the site position information 
+ - Open the base counts | remove the header | perform the base calling with our script | add the header | Paste together the base counts and the site position information
+   
 `zcat NRM590107.counts.gz | tail -n +2 | sh Basecalls_0.1.sh - | cat header.txt - | paste NRM590107.pos - > NRM590107.basecall.txt`
 
 ### Print the minor allele frequency by each specific heterozygosity type (for plotting)
- - Extract only the sites that have a heterozygous base call | print the base call and the frequency of the minor allele | count the output 
+ - Extract only the sites that have a heterozygous base call | print the base call and the frequency of the minor allele | count the output
+   
 `grep HET NRM590107.basecall.txt | awk '{split($0, arr); delete arr[1]; delete arr[2]; delete arr[3]; delete arr[8]; asort(arr); print arr[length(arr)-2],$8}' | sort | uniq -c > NRM590107.minorfreq2.txt`
+
  - Split each heterozygousity type into separate txt files
+   
 `grep AC NRM590107.minorfreq2.txt > NRM590107.minorfreq2_AC.txt`
 
 `grep AG NRM590107.minorfreq2.txt > NRM590107.minorfreq2_AG.txt`
@@ -29,7 +35,8 @@
 
 
 ### Runs of homozygosity
- - Generate ROH counts from the original basecall file and specifying the thresholds. In this example we have calculate heterozygosity in 100kb windows, a window must have 25kb of data to be considered, and a window with a heterozygosity <0.0001 is considered for ROH.
+ - Generate ROH counts from the original basecall file and specifying the thresholds. In this example we have calculate heterozygosity in 100kb windows, a window must have 25kb of data to be considered, and a window with a heterozygosity <0.0001 is considered for ROH
+   
 `python ROH.py NRM590107.basecall.txt 100000 25000 0.0001 > NRM590107.ROH`
 
 ## Scripts that were used to generate numbers for the SNP tracts 
