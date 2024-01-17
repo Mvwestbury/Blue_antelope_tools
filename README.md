@@ -29,10 +29,11 @@
 
 
 ### Runs of homozygosity
+#### Generate ROH counts from the original basecall file and specifying the thresholds. In this example we have calculate heterozygosity in 100kb windows, a window must have 25kb of data to be considered, and a window with a heterozygosity <0.0001 is considered for ROH.
 `python ROH.py NRM590107.basecall.txt 100000 25000 0.0001 > NRM590107.ROH`
 
 ### Scripts that were used to generate numbers for the SNP tracts 
 
-1. consensus sequences from samples mapped to the same reference were used as input for the script "findTracts.pl", which outputs biallelic sites and their genomic positions that are of topology ABBA (+1), BABA (-1), and BBAA (0). The script requires as input a transposed alignment.
+1. Consensus sequences from samples mapped to the same reference were used as input for the script "findTracts.pl", which outputs biallelic sites and their genomic positions that are of topology ABBA (+1), BABA (-1), and BBAA (0). The script requires as input a transposed alignment.
 
-2. from the resulting files, SNP tracts were computed with the script "countSNPs.pl" as described in the publication: At least 10 consecutively scored sites of a focal topology were extracted, but up to 4 consecutive sites of the other two topologies were allowed. From these, only tracts in which 75% of the positions were scored as the focal topology were kept. The script as provided computes ABBA tracts. Adjustments for BABA dn BBAA need to be made. 
+2. From the resulting files, SNP tracts were computed with the script "countSNPs.pl" as described in the publication: At least 10 consecutively scored sites of a focal topology were extracted, but up to 4 consecutive sites of the other two topologies were allowed. From these, only tracts in which 75% of the positions were scored as the focal topology were kept. The script as provided computes ABBA tracts. Adjustments for BABA dn BBAA need to be made. 
