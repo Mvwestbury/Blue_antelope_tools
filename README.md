@@ -3,6 +3,8 @@
 
 ## Heterozygosity
 ### Base calls using ANGSD
+
+#### Perform the base calling in ANGSD specifying dumpcounts to print the counts
 angsd -minq 20 -minmapq 20 -uniqueOnly 1 -remove_bads 1 -docounts 1 -dumpCounts 4 -i NRM590107.bam -out NRM590107 -setMinDepthInd 10 -rf Autosomes.txt -nthreads 10
 
 gunzip NRM590107.pos.gz
