@@ -3,8 +3,8 @@
 ## Adding G-T damage to fastq files
 `Rscript mutator.R [options]`
  - Options:
-        -f FASTQ, --fastq=FASTQ
-                your fastq file
+ - 
+        -f FASTQ or --fastq=FASTQ (your fastq file)
         -N NUMBER, --number=NUMBER
                 number of reads you want to damage
         -o OUTPUT, --output=OUTPUT
