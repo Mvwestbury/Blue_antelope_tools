@@ -44,7 +44,7 @@
 
 
 ### Runs of homozygosity
- - Generate ROH counts from the original basecall file and specifying the thresholds. In this example we have calculate heterozygosity in 100kb windows, a window must have 25kb of data to be considered, and a window with a heterozygosity <0.0001 is considered for ROH
+ - Generate ROH counts from the original basecall file and specifying the thresholds. In this example we have calculate heterozygosity in 100kb windows, a window can have 25kb of missing data to be considered, and a window with a heterozygosity <0.0001 is considered for ROH
    
 `python ROH.py NRM590107.basecall.txt 100000 25000 0.0001 > NRM590107.ROH`
 
